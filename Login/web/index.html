@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>Login</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    </head>
+    <body>
+        <h1>Login</h1>
+        <form action="login" method="post">
+            Username:
+            <input type="text" name="user"><br>
+            Password
+            <input type="password" name="password"><br>
+            <input onclick="Login()" type="submit" value="login"   >
+        </form>
+
+        <script type="text/javascript">
+            function Login() {
+                var arr = document.getElementsByTagName('input');
+                if (arr[1].value === "") {
+                    alert("Fail");
+                }
+            }
+        </script>
+    </body>
+</html>
