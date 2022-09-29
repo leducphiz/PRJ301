@@ -11,18 +11,15 @@
         <div id="container">
             <div id="header">
                 <div id="logo">
-                    <a href="index.jsp">
-                        <img src="img/logo.png"/>
-                    </a>
+                    <a href="index.html"><img src="img/logo.png"/></a>
                 </div>
                 <div id="banner">
                     <ul>
-                        <li><a href="#">Cart: 0</a></li>
-                        <li><a href="#">SignIn</a></li>
-                        <li><a href="#">SignUp</a></li>
+                        <li><a href="cart.html">Cart: 0</a></li>
+                        <li><a href="signin.html">SignIn</a></li>
+                        <li><a href="signup.html">SignUp</a></li>
                         <li><a href="#">Profile</a></li>
                         <li><a href="#">SignOut</a></li>
                     </ul>
                 </div>
             </div>
-

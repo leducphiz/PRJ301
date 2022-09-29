@@ -1,0 +1,102 @@
+*{margin: 0px; padding: 0px;font-size: 16px;font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
+#container{
+    width: 80%;
+    margin: 0px auto;
+    border: 1px solid sandybrown;
+}
+
+#header, #content{
+    display: flex;
+}
+
+#header{
+    border-bottom: 1px solid saddlebrown;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+#logo{
+    width: 15%;
+}
+#logo img{
+    width: 130px;
+}
+
+#banner{
+    width: 95%;
+    text-align: right;
+    position: relative;
+    padding-top: 80px;
+}
+
+#banner li{
+    margin-left: 20px;
+    display: inline-block;
+}
+
+#content-left{
+    width: 15%;
+    margin-right: 5px;
+}
+#content-left h3{
+    border-bottom: 1px solid sienna;
+    text-align: center;
+    padding: 10px 0px;
+}
+#content-left ul{
+    list-style: none;
+}
+
+#content-left ul li{
+    padding: 10px 0px 10px 10px;
+}
+
+#content-left ul li:hover{
+    background-color: sienna;
+    cursor: pointer;
+    color:white;
+}
+
+#content-left ul a{
+    color: brown;
+    text-decoration: none;
+}
+
+#content-right{
+    width: 95%;
+}
+
+.path{
+    line-height: 40px;
+    background-color: sienna;
+    color: white;
+    width: 98%;
+    margin: 0px 10px;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding-left: 5px;
+}
+
+.content-main{
+    width: 100%;
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.product{
+    width: 25%;
+    border: 1px solid saddlebrown;
+    margin: 0px 10px;
+}
+
+#product img{
+    width: 20%;
+}
+
+#footer{
+    border-top: 1px solid sienna;
+    line-height: 100px;
+    text-align: center;
+}
+
