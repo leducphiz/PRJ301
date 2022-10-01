@@ -4,9 +4,17 @@
         <servlet-name>CategoryController</servlet-name>
         <servlet-class>controller.CategoryController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AccountLogin</servlet-name>
+        <servlet-class>controller.AccountLoginController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>CategoryController</servlet-name>
         <url-pattern>/category-control</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AccountLogin</servlet-name>
+        <url-pattern>/Account/login</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>CategoryController</servlet-name>
-        <servlet-class>controller.CategoryController</servlet-class>
+        <servlet-name>ProductListController</servlet-name>
+        <servlet-class>controllers.ProductListController</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AccountLogin</servlet-name>
-        <servlet-class>controller.AccountLoginController</servlet-class>
+        <servlet-name>CategoryListController</servlet-name>
+        <servlet-class>controllers.CategoryListController</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>CategoryController</servlet-name>
-        <url-pattern>/category-control</url-pattern>
+        <servlet-name>ProductListController</servlet-name>
+        <url-pattern>/product-list</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AccountLogin</servlet-name>
-        <url-pattern>/Account/login</url-pattern>
+        <servlet-name>CategoryListController</servlet-name>
+        <url-pattern>/category-list</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
