@@ -1,10 +1,13 @@
 <%@include file= "./template/header.jsp" %>
+<%
+    CustomerDTO cus = (CustomerDTO) request.getSession().getAttribute("CusSession");
+%>
         <div id="content">
             <div id="content-left">
-                <h3 style="font-weight: normal;">Welcome, Ph?m Ng?c Minh Châu</h3>
+                <h3 style="font-weight: normal;">Welcome, <%=cus.getContactName()%></h3>
                 <h3>Account Management</h3>
                 <ul>
-                    <a href="profile.jsp"><li>Personal information</li></a>
+                    <a href="../profile.jsp"><li>Personal information</li></a>
                 </ul>
                 <h3>My order</h3>
                 <ul>
@@ -17,18 +20,18 @@
                 <div class="content-main">
                     <div id="profile-content">
                         <div class="profile-content-col">
-                            <div>Company name: <br/>FPTU</div>
-                            <div>Contact name: <br/>Ph?m Ng?c Minh Châu</div>
+                            <div>Company name: <br/><%=cus.getCompanyName()%></div>
+                            <div>Contact name: <br/><%=cus.getContactName()%></div>
                             <div>
                                 <input type="submit" value="Edit info"/>
                             </div>
                         </div>
                         <div class="profile-content-col">
-                            <div>Company title: <br/>CEO</div>
-                            <div>Address: <br/>CNC Hoa Lac, Ha Noi</div>
+                            <div>Company title: <br/><%=cus.getRole()%></div>
+                            <div>Address: <br/><%=cus.getAddress()%></div>
                         </div>
                         <div class="profile-content-col">
-                            <div>Email: <br/>chaupnm@fpt.edu.vn</div>
+                            <div>Email: <br/><%=cus.getEmail()%></div>
                         </div>
                     </div>
                 </div>

@@ -4,14 +4,13 @@
  */
 package controllers;
 
-import DAL.Category;
+import DTO.CustomerDTO;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
-import models.CategoryDAO;
+import models.CustomerDAO;
 
 /**
  *
@@ -21,6 +20,9 @@ public class ProfileController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        int accountID = Integer.parseInt(req.getParameter("accountID"));
+        CustomerDTO cus = new CustomerDAO().getProfile(accountID);
+        req.getSession().setAttribute("CusSession", cus);
         req.getRequestDispatcher("../profile.jsp").forward(req, resp);
     }
 }

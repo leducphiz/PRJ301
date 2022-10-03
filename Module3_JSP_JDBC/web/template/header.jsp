@@ -1,3 +1,9 @@
+<%@page import="DAL.*" %>
+<%@page import="controllers.*" %>
+<%@page import="models.*" %>
+<%@page import="java.util.ArrayList" %>
+<%@page import="DTO.*" %>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -24,8 +30,10 @@
                         <li><a href="account/signup">Sign Up</a></li>
                             <% 
                                 }else{
+                                    Account acc = (Account) request.getSession().getAttribute("AccSession");
+                                    
                             %>
-                        <li><a href="account/profile">Profile</a></li>
+                        <li><a href="account/profile?accountID=<%=acc.getAccountID() %>">Profile</a></li>
                         <li><a href="account/signin">Sign Out</a></li>
                             <%
                                 }
