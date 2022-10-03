@@ -4,8 +4,7 @@
  */
 package controllers;
 
-import dal.Account;
-
+import DAL.Account;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -17,7 +16,7 @@ import models.AccountDAO;
  *
  * @author leducphi
  */
-public class AccountLoginController extends HttpServlet {
+public class AccountLoginControl extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -28,19 +27,17 @@ public class AccountLoginController extends HttpServlet {
             //cap session
             req.getSession().setAttribute("AccSession", acc);
             //dieu huong toi index
-            resp.sendRedirect("../test.jsp");
+            resp.sendRedirect(req.getContextPath() + "/index.jsp");
         } else {
             // else thi gui thong diep error ve doGet(login.jsps)
             req.setAttribute("msg", "Account not exist");
-            req.getRequestDispatcher("../signin.jsp").forward(req, resp);
+            req.getRequestDispatcher("/signin").forward(req, resp);
         }
 
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //chuyen tiep yeu cau cua nguoi dung sang signin .jsp
-
         req.getRequestDispatcher("../signin.jsp").forward(req, resp);
     }
 
