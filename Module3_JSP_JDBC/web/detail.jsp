@@ -54,7 +54,7 @@
         </div>
         <div id="info-detail">
             <div id="info-detail-title">
-                <h2>Information deltail</h2>
+                <h2>Information detail</h2>
                 <div style="margin:10px auto;">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, debitis. Asperiores soluta eveniet eos accusantium doloremque cum suscipit ducimus enim at sapiente mollitia consequuntur dicta quaerat, sunt voluptates autem. Quam!
                     Lorem ipsum dolor, sit amet consectetur adipisicing elit. Rem illum autem veritatis maxime corporis quod quibusdam nostrum eaque laborum numquam quos unde eveniet aut, exercitationem voluptatum veniam fugiat, debitis esse?

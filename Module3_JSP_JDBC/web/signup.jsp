@@ -2,8 +2,8 @@
 <div id="content">
     <div id="form">
         <div id="form-title">
-            <span><a href="signup.jsp" style="color: red;">SIGN UP</a></span>
-            <span><a href="signin.jsp">SIGN IN</a></span>
+            <span><a href="signup" style="color: red;">SIGN UP</a></span>
+            <span><a href="signin">SIGN IN</a></span>
         </div>
         <div id="form-content">
             <form action="" method="post">
