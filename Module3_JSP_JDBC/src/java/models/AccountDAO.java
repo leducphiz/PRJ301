@@ -5,6 +5,7 @@
 package models;
 
 import DAL.Account;
+import DAL.Customers;
 import DAL.DBContext;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -42,6 +43,34 @@ public class AccountDAO extends DBContext {
 
         return account;
     }
+
+    public int AddAccount(Account acc, Customers cus) {
+        int result1 = 0, result2 = 0;
+
+        try {
+            String sql1 = "insert into Customers(CustomerID, CompanyName,ContactName, ContactTitle, Address) values(?,?,?,?,?)";
+            String sql2 = "insert into Accounts(Email, Password, CustomerID) values (?,?,?)";
+            PreparedStatement ps1 = connection.prepareStatement(sql1);
+            ps1.setString(1, cus.getCustomerID());
+            ps1.setString(2, cus.getCompanyName());
+            ps1.setString(3, cus.getContactName());
+            ps1.setString(4, cus.getContactTitle());
+            ps1.setString(5, cus.getAddress());
+            PreparedStatement ps2 = connection.prepareStatement(sql2);
+            ps2.setString(1, acc.getEmail());
+            ps2.setString(2, acc.getPassword());
+            ps2.setString(3, cus.getCustomerID());
+            result1 = ps1.executeUpdate();
+            result2 = ps2.executeUpdate();
+        } catch (SQLException e) {
+        }
+        if (result1 != 0 && result2 != 0) {
+            return 1;
+        }else{
+            return 0;
+        }
+    }
+
     public static void main(String[] args) {
         Account a = new AccountDAO().getAccount("cust1@gmail.com", "123");
         System.out.println(a);

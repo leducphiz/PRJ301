@@ -9,18 +9,23 @@ package DAL;
  * @author leducphi
  */
 public class Customers {
+
     private String CustomerID;
     private String CompanyName;
     private String ContactName;
     private String ContactTitle;
     private String Address;
+    private String Role;
+    private String Email;
 
-    public Customers(String CustomerID, String CompanyName, String ContactName, String ContactTitle, String Address) {
+    public Customers(String CustomerID, String CompanyName, String ContactName, String ContactTitle, String Address, String Role, String Email) {
         this.CustomerID = CustomerID;
         this.CompanyName = CompanyName;
         this.ContactName = ContactName;
         this.ContactTitle = ContactTitle;
         this.Address = Address;
+        this.Role = Role;
+        this.Email = Email;
     }
 
     public String getCustomerID() {
@@ -63,11 +68,20 @@ public class Customers {
         this.Address = Address;
     }
 
-    @Override
-    public String toString() {
-        return "Customers{" + "CustomerID=" + CustomerID + ", CompanyName=" + CompanyName + ", ContactName=" + ContactName + ", ContactTitle=" + ContactTitle + ", Address=" + Address + '}';
+    public String getRole() {
+        return Role;
     }
-    
-    
-    
+
+    public void setRole(String Role) {
+        this.Role = Role;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String Email) {
+        this.Email = Email;
+    }
+
 }

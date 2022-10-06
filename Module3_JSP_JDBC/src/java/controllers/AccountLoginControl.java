@@ -22,23 +22,46 @@ public class AccountLoginControl extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("txtEmail");
         String pass = req.getParameter("txtPass");
-        Account acc = new AccountDAO().getAccount(email, pass);
-        if (acc != null) {
-            //cap session
-            req.getSession().setAttribute("AccSession", acc);
-            //dieu huong toi index
-            resp.sendRedirect(req.getContextPath() + "/index.jsp");
+        String msgEmail = "";
+        String msgPass = "";
+
+        if (email.equals("")) {
+            msgEmail = "Email is requied";
+            req.setAttribute("msgEmail", msgEmail);
+        }
+
+        if (email.equals("")) {
+            msgPass = "Password is requied";
+            req.setAttribute("msgPass", msgPass);
+        }
+
+        if (!msgEmail.equals("") || !msgPass.equals("")) {
+            req.getRequestDispatcher(req.getContextPath() + "/signin.jsp").forward(req, resp);
         } else {
-            // else thi gui thong diep error ve doGet(login.jsps)
-            req.setAttribute("msg", "Account not exist");
-            req.getRequestDispatcher("/signin").forward(req, resp);
+
+            Account acc = new AccountDAO().getAccount(email, pass);
+            if (acc != null) {
+                //cap session
+                req.getSession().setAttribute("AccSession", acc);
+                //dieu huong toi index
+                resp.sendRedirect(req.getContextPath() + "/index.jsp");
+            } else {
+                // else thi gui thong diep error ve doGet(login.jsps)
+                req.setAttribute("msg", "Account not exist");
+                req.getRequestDispatcher("../signin.jsp").forward(req, resp);
+            }
         }
 
     }
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("../signin.jsp").forward(req, resp);
+        if (req.getSession().getAttribute("AccSession") != null) {
+            req.getSession().removeAttribute("AccSession");
+            resp.sendRedirect(req.getContextPath() + "/index.jsp");
+        } else {
+            req.getRequestDispatcher("../signin.jsp").forward(req, resp);
+        }
     }
 
 }

@@ -26,15 +26,15 @@
                             <%
                                 if(session.getAttribute("AccSession")==null){
                             %>
-                        <li><a href="account/signin">Sign In</a></li>
-                        <li><a href="account/signup">Sign Up</a></li>
+                        <li><a href="<%=path%>/account/signin">Sign In</a></li>
+                        <li><a href="<%=path%>/account/signup">Sign Up</a></li>
                             <% 
                                 }else{
                                     Account acc = (Account) request.getSession().getAttribute("AccSession");
                                     
                             %>
-                        <li><a href="account/profile?accountID=<%=acc.getAccountID() %>">Profile</a></li>
-                        <li><a href="account/signin">Sign Out</a></li>
+                        <li><a href="<%=path%>/account/profile?accountID=<%=acc.getAccountID() %>">Profile</a></li>
+                        <li><a href="<%=path%>/account/signin">Sign Out</a></li>
                             <%
                                 }
                             %>

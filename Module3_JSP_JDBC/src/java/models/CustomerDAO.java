@@ -4,6 +4,7 @@
  */
 package models;
 
+import DAL.Account;
 import DAL.Customers;
 import DAL.DBContext;
 import DTO.CustomerDTO;
@@ -17,8 +18,8 @@ import java.sql.SQLException;
  */
 public class CustomerDAO extends DBContext {
 
-    public CustomerDTO getProfile(int ID) {
-        CustomerDTO cus = null;
+    public Customers getProfile(int ID) {
+        Customers cus = null;
         try {
             String sql = "select * from Customers c, Accounts a where c.CustomerID = a.CustomerID and a.AccountID = ?";
             PreparedStatement ps = connection.prepareStatement(sql);
@@ -32,15 +33,16 @@ public class CustomerDAO extends DBContext {
                 String Address = rs.getString("Address");
                 String Role = rs.getString("Role");
                 String Email = rs.getString("Email");
-                cus = new CustomerDTO(CustomerID, CompanyName, ContactName, ContactTitle, Address, Role, Email);
+                cus = new Customers(CustomerID, CompanyName, ContactName, ContactTitle, Address, Role, Email);
+              
             }
         } catch (SQLException e) {
         }
         return cus;
     }
-    
+
     public static void main(String[] args) {
-        CustomerDTO c = new CustomerDAO().getProfile(5);
+        Customers c = new CustomerDAO().getProfile(5);
         System.out.println(c.toString());
     }
 }

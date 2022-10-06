@@ -28,11 +28,11 @@ public class AccountLoginController extends HttpServlet {
             //cap session
             req.getSession().setAttribute("AccSession", acc);
             //dieu huong toi index
-            resp.sendRedirect("../test.jsp");
+            resp.sendRedirect("index.jsp");
         } else {
             // else thi gui thong diep error ve doGet(login.jsps)
             req.setAttribute("msg", "Account not exist");
-            req.getRequestDispatcher("../signin.jsp").forward(req, resp);
+            req.getRequestDispatcher("login.jsp").forward(req, resp);
         }
 
     }
@@ -41,7 +41,7 @@ public class AccountLoginController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //chuyen tiep yeu cau cua nguoi dung sang signin .jsp
 
-        req.getRequestDispatcher("../signin.jsp").forward(req, resp);
+        req.getRequestDispatcher("login.jsp").forward(req, resp);
     }
 
 }

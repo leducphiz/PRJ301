@@ -4,7 +4,7 @@
  */
 package controllers;
 
-import DTO.CustomerDTO;
+import DAL.Customers;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
@@ -21,7 +21,7 @@ public class ProfileController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int accountID = Integer.parseInt(req.getParameter("accountID"));
-        CustomerDTO cus = new CustomerDAO().getProfile(accountID);
+        Customers cus = new CustomerDAO().getProfile(accountID);
         req.getSession().setAttribute("CusSession", cus);
         req.getRequestDispatcher("../profile.jsp").forward(req, resp);
     }
