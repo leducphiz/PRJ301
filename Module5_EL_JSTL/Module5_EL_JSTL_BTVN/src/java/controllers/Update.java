@@ -30,7 +30,6 @@ public class Update extends HttpServlet {
             resp.sendRedirect("index");
         } catch (IOException e) {
         }
-
     }
 
     @Override

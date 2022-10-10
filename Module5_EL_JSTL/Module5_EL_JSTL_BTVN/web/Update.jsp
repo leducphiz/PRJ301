@@ -16,8 +16,7 @@
     <h1>Edit information of Product ID: ${p.getProductID()}</h1>
 
 
-    <!--DEMO JSTL BY EXAMPLE-->
-    <!--demo c:set c:out-->
+    <!--DEMO JSTL BY EXAMPLE----------------------------------->
     <c:set var="varA" value="${p.getProductName()}" />
     <h5>The old Product Name: <c:out value="${varA}" /></h5>
 
@@ -26,9 +25,8 @@
     <c:remove var="varB"></c:remove>
     <h5>The new Product Price <c:out value="${varB}" /></h5>
 
-
     <c:catch var ="catchException">
-        <% int x = 5/0;%>
+        <% String s = null; out.println(s.length());%>
     </c:catch>
     <c:if test = "${catchException != null}">
         <p>The exception is : ${catchException} <br />
@@ -46,6 +44,10 @@
         </c:choose>
     </c:if>
 
+    <c:if test="${p.getProductID() % 2 == 0 && p.getProductName().length()  > 5}">
+        day la so chan va ten sp dai hon 5 ki tu
+    </c:if>
+
 
     <a href = "<c:url value = "index"/>">HOME</a>
     <c:url value="/index.jsp" var="completeURL">  
@@ -58,8 +60,7 @@
         <c:out value="${name}"/><p>  
         </c:forTokens>  
 
-    <c:import var = "data" url = "http://www.tutorialspoint.com"/>
-    <c:out value = "${data}"/>
+        <!-------------------------------------------------------------------->
 
     <form action="update" method="post">
         Name: <input type="text" name="Name" value="${p.getProductName()}"><br>

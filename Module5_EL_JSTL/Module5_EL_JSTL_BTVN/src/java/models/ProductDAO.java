@@ -60,25 +60,21 @@ public class ProductDAO extends DBContext {
         }
     }
 
-    public static void main(String[] args) {
-        ProductDAO x = new ProductDAO();
-        Product p = new Product(2, "Iphone 2", 100.2);
-        System.out.println(p);
-        x.UpdateProduct(p);
-    }
+//    public static void main(String[] args) {
+//        ProductDAO x = new ProductDAO();
+//        Product p = new Product(2, "Iphone 2", 100.2);
+//        System.out.println(p);
+//        x.UpdateProduct(p);
+//    }
 
     public Product getProductByID(int id) {
         Product product = null;
         try {
             String sql = "SELECT * FROM dbo.Products WHERE ProductID = ?";
-            //Step2: create obj PrepareStatement
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setInt(1, id);
-            //Step 3: thuc thti truy van
             ResultSet rs = ps.executeQuery();
-            //Step 4: xu ly kq tra  ve
             while (rs.next()) {
-                //lay du lieu tu rs gan cho cac bien cuc bo
                 int ProductID = rs.getInt("ProductID");
                 String ProductName = rs.getString("ProductName");
                 double UnitPrice = rs.getDouble("UnitPrice");
