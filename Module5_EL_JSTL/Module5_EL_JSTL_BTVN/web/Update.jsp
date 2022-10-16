@@ -16,15 +16,6 @@
     <h1>Edit information of Product ID: ${p.getProductID()}</h1>
 
 
-    <!--DEMO JSTL BY EXAMPLE----------------------------------->
-    <c:set var="varA" value="${p.getProductName()}" />
-    <h5>The old Product Name: <c:out value="${varA}" /></h5>
-
-    <c:set var="varB" value="${p.getUnitPrice()}" />
-    <h5>The old Product Price <c:out value="${varB}" /></h5>
-    <c:remove var="varB"></c:remove>
-    <h5>The new Product Price <c:out value="${varB}" /></h5>
-
     <c:catch var ="catchException">
         <% String s = null; out.println(s.length());%>
     </c:catch>
@@ -33,34 +24,11 @@
             There is an exception: ${catchException.message}</p>
         </c:if>
 
-    <c:if test="${p.getProductID()!= null }">
-        <c:choose>
-            <c:when test="${p.getProductID()%2 == 0 }">
-                <p>${p.getProductID() } is even</p>
-            </c:when>
-            <c:otherwise>
-                <p>${p.getProductID() } is odd</p>
-            </c:otherwise>
-        </c:choose>
-    </c:if>
-
-    <c:if test="${p.getProductID() % 2 == 0 && p.getProductName().length()  > 5}">
+    <c:if test="${p.getProductID() % 2 == 0 && p.getProductName().length()  > 5}" var="cookieTestResult" scope="request">
         day la so chan va ten sp dai hon 5 ki tu
     </c:if>
+    Result of Cookie Test:  <c:out value="${requestScope.cookieTestResult}"/>
 
-
-    <a href = "<c:url value = "index"/>">HOME</a>
-    <c:url value="/index.jsp" var="completeURL">  
-        <c:param name="ID" value="786"/>  
-        <c:param name="Name" value="PhiLe"/>  
-    </c:url>  
-    <p>${completeURL}</p>
-
-    <c:forTokens items="Le-Duc-Phi-Lop-SE1641" delims="-" var="name">  
-        <c:out value="${name}"/><p>  
-        </c:forTokens>  
-
-        <!-------------------------------------------------------------------->
 
     <form action="update" method="post">
         Name: <input type="text" name="Name" value="${p.getProductName()}"><br>
