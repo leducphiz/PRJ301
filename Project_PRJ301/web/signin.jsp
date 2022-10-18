@@ -4,8 +4,8 @@
 
     <div id="form">
         <div id="form-title">
-            <span><a href="signup">SIGN UP</a></span>
-            <span><a href="signin" style="color: red;">SIGN IN</a></span>
+            <span><a href="<%=request.getContextPath()%>/account/signup">SIGN UP</a></span>
+            <span><a href="<%=request.getContextPath()%>/account/signin" style="color: red;">SIGN IN</a></span>
         </div>
         <div id="form-content">
             <center style="color: red;">

@@ -22,9 +22,7 @@
                         <div class="profile-content-col">
                             <div>Company name: <br/><%=cus.getCompanyName()%></div>
                             <div>Contact name: <br/><%=cus.getContactName()%></div>
-                            <div>
-                                <input type="submit" value="Edit info"/>
-                            </div>
+                            <a href="<%=path%>/account/edit?CusID=<%=cus.getCustomerID()%> " class="btn btn-primary">Edit Info</a>
                         </div>
                         <div class="profile-content-col">
                             <div>Company title: <br/><%=cus.getContactTitle()%></div>

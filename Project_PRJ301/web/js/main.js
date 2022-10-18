@@ -1,73 +1,54 @@
-/* 
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/JavaScript.js to edit this template
- */
+function OrdersChart() {
+        var xValues = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
 
-var showMoreHot = document.querySelector(".show-more-hot");
-var moreHotProducts = document.querySelectorAll(".product.more-hot-product");
+        new Chart("myChart1", {
+            type: "line",
+            data: {
+                labels: xValues,
+                datasets: [{
+                        data: [1600, 1700, 1700, 1900, 2000, 2700, 4000, 5000, 6000, 7000],
+                        borderColor: "sienna",
+                        fill: true
+                    }]
+            },
+            options: {
+                legend: {display: false}
+            }
+        });
+    }
 
-var showMoreSale = document.querySelector(".show-more-sale");
-var moreSaleProducts = document.querySelectorAll(".product.more-sale-product");
+    function CustomersChart() {
+        var xValues = ["Total", "New customer"];
+        var yValues = [200, 50, 300];
+        var barColors = ["green", "red"];
 
-var showMoreNew = document.querySelector(".show-more-new");
-var moreNewProducts = document.querySelectorAll(".product.more-new-product");
+        new Chart("myChart2", {
+            type: "bar",
+            data: {
+                labels: xValues,
+                datasets: [{
+                        backgroundColor: barColors,
+                        data: yValues
+                    }]
+            },
+            options: {
+                legend: {display: false},
+                title: {
+                    display: true,
+                    text: "New Customers (30 daily Avg)"
+                }
+            }
+        });
+    }
 
-showMoreHot.addEventListener('click', function () {
-
-    if (showMoreHot.innerHTML === "Show more") {
-        showMoreHot.innerHTML = "Show less";
-        for (var i in moreHotProducts) {
-            moreHotProducts[i].style.display = 'block';
+    OrdersChart();
+    CustomersChart();
+    
+    function showMess(id) {
+        var option = confirm('Do you want to delete product : ' + id + ' ? ');
+        if (option === true) {
+            window.location.href = 'delete?id=' + id;
         }
+
+
     }
-
-    if (showMoreHot.innerHTML === "Show less") {
-        showMoreHot.innerHTML = "Show more";
-        for (var i in moreHotProducts) {
-            moreHotProducts[i].style.display = 'none';
-        }
-    }
-}
-);
-showMoreSale.addEventListener('click', function () {
-    if (showMoreSale.innerHTML === "Show more") {
-        showMoreSale.innerHTML = "Show less";
-        for (var i in moreSaleProducts) {
-            moreSaleProducts[i].style.display = 'block';
-        }
-    }
-
-    if (showMoreSale.innerHTML === "Show less") {
-        showMoreSale.innerHTML = "Show more";
-        for (var i in moreSaleProducts) {
-            moreSaleProducts[i].style.display = 'none';
-        }
-    }
-}
-);
-
-showMoreNew.addEventListener('click', function () {
-
-    if (showMoreNew.innerHTML === "Show more") {
-        showMoreNew.innerHTML = "Show less";
-        for (var i in moreNewProducts) {
-            moreNewProducts[i].style.display = 'block';
-        }
-    }
-
-    if (showMoreNew.innerHTML === "Show less") {
-        showMoreNew.innerHTML = "Show more";
-        for (var i in moreNewProducts) {
-            moreNewProducts[i].style.display = 'none';
-        }
-    }
-}
-);
-
-function updateInfo() {
-    if(confirm("confirm")) {
-        window.location="profile?id=";
-    }
-}
-
-

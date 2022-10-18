@@ -31,6 +31,9 @@ public class Product {
         this.Discontinued = Discontinued;
     }
 
+    public Product() {
+    }
+
     public int getProductID() {
         return ProductID;
     }

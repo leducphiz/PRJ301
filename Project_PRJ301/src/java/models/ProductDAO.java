@@ -4,8 +4,7 @@
  */
 package models;
 
-import DAL.DBContext;
-import DAL.Product;
+import DAL.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -17,20 +16,13 @@ import java.util.ArrayList;
  */
 public class ProductDAO extends DBContext {
 
-    // Action: Read all products
     public ArrayList<Product> getProducts() {
         ArrayList<Product> products = new ArrayList<>();
         try {
             String sql = "Select * From Products";
-            //Buoc 2: Tạo đối tượng PrepareStatement
             PreparedStatement ps = connection.prepareStatement(sql);
-
-            //Buoc 3: Thực thi truy vấn
             ResultSet rs = ps.executeQuery();
-
-            //Buoc 4: Xử lý kết quả trả về
             while (rs.next()) {
-                //Lấy dữ liệu từ ResultSet gán cho các biến cục bộ
                 int ProductID = rs.getInt("ProductID");
                 String ProductName = rs.getString("ProductName");
                 int CategoryID = rs.getInt("CategoryID");
@@ -40,22 +32,136 @@ public class ProductDAO extends DBContext {
                 int UnitsOnOrder = rs.getInt("UnitsOnOrder");
                 int ReorderLevel = rs.getInt("ReorderLevel");
                 boolean Discontinued = rs.getBoolean("Discontinued");
-
-                //Khởi tạo đối tượng kiểu Product
                 Product p = new Product(ProductID, ProductName, CategoryID, QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel, Discontinued);
-
-                //Bổ sung 'p' vào 'products'
                 products.add(p);
             }
         } catch (SQLException e) {
         }
         return products;
     }
-    
-    public static void main(String[] args) {
-        ArrayList<Product> list = new ProductDAO().getProducts();
-        for (Product item : list) {
-            System.out.println(item.toString());
+
+    public ArrayList<Product> getHotProducts() {
+        ArrayList<Product> products = new ArrayList<>();
+        try {
+            String sql = "SELECT TOP 4\n"
+                    + "       *\n"
+                    + "FROM dbo.[Order Details] o,\n"
+                    + "     dbo.Products p\n"
+                    + "WHERE o.ProductID = p.ProductID\n"
+                    + "ORDER BY Discount DESC;";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int ProductID = rs.getInt("ProductID");
+                String ProductName = rs.getString("ProductName");
+                int CategoryID = rs.getInt("CategoryID");
+                String QuantityPerUnit = rs.getString("QuantityPerUnit");
+                double UnitPrice = rs.getDouble("UnitPrice");
+                int UnitsInStock = rs.getInt("UnitsInStock");
+                int UnitsOnOrder = rs.getInt("UnitsOnOrder");
+                int ReorderLevel = rs.getInt("ReorderLevel");
+                boolean Discontinued = rs.getBoolean("Discontinued");
+                Product p = new Product(ProductID, ProductName, CategoryID, QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel, Discontinued);
+                products.add(p);
+            }
+        } catch (SQLException e) {
         }
+        return products;
     }
+
+    public ArrayList<Product> getBestSaleProducts() {
+        ArrayList<Product> products = new ArrayList<>();
+        try {
+            String sql = "SELECT TOP 4\n"
+                    + "       *\n"
+                    + "FROM dbo.[Order Details] o,\n"
+                    + "     dbo.Products p\n"
+                    + "WHERE o.ProductID = p.ProductID\n"
+                    + "ORDER BY Discount ASC;";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int ProductID = rs.getInt("ProductID");
+                String ProductName = rs.getString("ProductName");
+                int CategoryID = rs.getInt("CategoryID");
+                String QuantityPerUnit = rs.getString("QuantityPerUnit");
+                double UnitPrice = rs.getDouble("UnitPrice");
+                int UnitsInStock = rs.getInt("UnitsInStock");
+                int UnitsOnOrder = rs.getInt("UnitsOnOrder");
+                int ReorderLevel = rs.getInt("ReorderLevel");
+                boolean Discontinued = rs.getBoolean("Discontinued");
+                Product p = new Product(ProductID, ProductName, CategoryID, QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel, Discontinued);
+                products.add(p);
+            }
+        } catch (SQLException e) {
+        }
+        return products;
+    }
+
+    public ArrayList<Product> getNEWProducts() {
+        ArrayList<Product> products = new ArrayList<>();
+        try {
+            String sql = "SELECT TOP 4\n"
+                    + "       *\n"
+                    + "FROM dbo.Products p,\n"
+                    + "     dbo.[Order Details] o\n"
+                    + "WHERE p.ProductID = o.ProductID\n"
+                    + "ORDER BY p.UnitsInStock DESC;";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                int ProductID = rs.getInt("ProductID");
+                String ProductName = rs.getString("ProductName");
+                int CategoryID = rs.getInt("CategoryID");
+                String QuantityPerUnit = rs.getString("QuantityPerUnit");
+                double UnitPrice = rs.getDouble("UnitPrice");
+                int UnitsInStock = rs.getInt("UnitsInStock");
+                int UnitsOnOrder = rs.getInt("UnitsOnOrder");
+                int ReorderLevel = rs.getInt("ReorderLevel");
+                boolean Discontinued = rs.getBoolean("Discontinued");
+                Product p = new Product(ProductID, ProductName, CategoryID, QuantityPerUnit, UnitPrice, UnitsInStock, UnitsOnOrder, ReorderLevel, Discontinued);
+                products.add(p);
+            }
+        } catch (SQLException e) {
+        }
+        return products;
+    }
+
+    public ArrayList<Product> getProductsByPage(int page, int elements) {
+        ArrayList<Product> products = new ArrayList<>();
+        int start = page * elements - elements;
+        try {
+            String sql = "SELECT *FROM products\n"
+                    + "ORDER BY\n"
+                    + "   ProductID\n"
+                    + "OFFSET ? ROWS \n"
+                    + "FETCH NEXT ? ROWS ONLY;";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1, start);
+            ps.setInt(2, elements);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Product p = new Product();
+                p.setProductID(rs.getInt("ProductID"));
+                p.setProductName(rs.getString("ProductName"));
+                p.setCategoryID(rs.getInt("CategoryID"));
+                p.setQuantityPerUnit(rs.getString("QuantityPerUnit"));
+                p.setUnitPrice(rs.getDouble("UnitPrice"));
+                p.setUnitsInStock(rs.getInt("UnitsInStock"));
+                p.setUnitsOnOrder(rs.getInt("UnitsOnOrder"));
+                p.setReorderLevel(rs.getInt("ReorderLevel"));
+                p.setDiscontinued(rs.getBoolean("Discontinued"));
+                products.add(p);
+            }
+        } catch (Exception e) {
+        }
+        return products;
+    }
+
+//    public static void main(String[] args) {
+//        ArrayList<Product> list = new ProductDAO().getHotProducts();
+//        for (Product item : list) {
+//            System.out.println(item.toString());
+//        }
+//    }
 }

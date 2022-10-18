@@ -28,13 +28,13 @@
                 <div id="product-detail">
                     <div id="product-detail-left">
                         <div id="product-img">
-                            <img src="img/1.jpg"/>
+                            <img src="img/4.jpg"/>
                         </div>
                         <div id="product-img-items">
-                            <div><a href="#"><img src="img/1.jpg"/></a></div>
-                            <div><a href="#"><img src="img/1.jpg"/></a></div>
-                            <div><a href="#"><img src="img/1.jpg"/></a></div>
-                            <div><a href="#"><img src="img/1.jpg"/></a></div>
+                            <div><a href="#"><img src="img/6.jpg"/></a></div>
+                            <div><a href="#"><img src="img/7.jpg"/></a></div>
+                            <div><a href="#"><img src="img/8.jpg"/></a></div>
+                            <div><a href="#"><img src="img/9.jpg"/></a></div>
                         </div>
                     </div>
                     <div id="product-detail-right">

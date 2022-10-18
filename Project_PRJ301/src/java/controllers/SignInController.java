@@ -20,6 +20,7 @@ public class SignInController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        AccountDAO dao = new AccountDAO();
         resp.setContentType("text/html;charset=utf-8");
         String email = req.getParameter("txtEmail");
         String pass = req.getParameter("txtPass");
@@ -40,12 +41,18 @@ public class SignInController extends HttpServlet {
             req.getRequestDispatcher("../signin.jsp").forward(req, resp);
         } else {
 
-            Account acc = new AccountDAO().getAccount(email, pass);
+            Account acc = dao.getAccount(email, pass);
             if (acc != null) {
                 //cap session
+                
                 req.getSession().setAttribute("AccSession", acc);
                 //dieu huong toi index
-                resp.sendRedirect(req.getContextPath() + "/index.jsp");
+                if (acc.getRole()==2) {
+                    resp.sendRedirect(req.getContextPath() + "/category-list");
+                } else if(acc.getRole() == 1){
+                    resp.sendRedirect(req.getContextPath() + "/dashboard.jsp");
+                }
+                
             } else {
                 // else thi gui thong diep error ve doGet(login.jsps)
                 req.setAttribute("txtEmail", email);
@@ -61,7 +68,7 @@ public class SignInController extends HttpServlet {
         resp.setContentType("text/html;charset=utf-8");
         if (req.getSession().getAttribute("AccSession") != null) {
             req.getSession().removeAttribute("AccSession");
-            resp.sendRedirect(req.getContextPath() + "/index.jsp");
+            resp.sendRedirect(req.getContextPath() + "/category-list");
         } else {
             req.getRequestDispatcher("../signin.jsp").forward(req, resp);
         }

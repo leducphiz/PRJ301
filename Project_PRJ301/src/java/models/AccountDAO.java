@@ -51,7 +51,7 @@ public class AccountDAO extends DBContext {
 
         try {
             String sql1 = "insert into Customers(CustomerID, CompanyName,ContactName, ContactTitle, Address) values(?,?,?,?,?)";
-            String sql2 = "insert into Accounts(Email, Password, CustomerID) values (?,?,?)";
+            String sql2 = "insert into Accounts(Email, Password, CustomerID, Role) values (?,?,?,2)";
             PreparedStatement ps1 = connection.prepareStatement(sql1);
             ps1.setString(1, cus.getCustomerID());
             ps1.setString(2, cus.getCompanyName());
@@ -77,19 +77,11 @@ public class AccountDAO extends DBContext {
         ArrayList<Account> accounts = new ArrayList<>();
         try {
             String sql = "Select * From Accounts";
-            //Buoc 2: Tạo đối tượng PrepareStatement
             PreparedStatement ps = connection.prepareStatement(sql);
-
-            //Buoc 3: Thực thi truy vấn
             ResultSet rs = ps.executeQuery();
-
-            //Buoc 4: Xử lý kết quả trả về
             while (rs.next()) {
-                //Lấy dữ liệu từ ResultSet gán cho các biến cục bộ
                 String email = rs.getString("Email");
-                //Khởi tạo đối tượng kiểu Product
                 accounts.add(new Account(0, email, "", "", 0, 0));
-                //Bổ sung 'p' vào 'products'
             }
         } catch (SQLException e) {
         }

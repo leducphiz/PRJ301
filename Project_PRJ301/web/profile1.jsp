@@ -1,6 +1,6 @@
 <%@include file="./template/header.jsp" %>
 <%
-    CustomerDTO cus = (CustomerDTO) request.getSession().getAttribute("CusSession");
+Customers cus = (Customers) request.getSession().getAttribute("CusSession");
 %>
 <div id="content">
     <div id="content-left">

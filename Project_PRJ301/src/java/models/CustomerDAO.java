@@ -32,11 +32,30 @@ public class CustomerDAO extends DBContext {
                 String Role = rs.getString("Role");
                 String Email = rs.getString("Email");
                 cus = new Customers(CustomerID, CompanyName, ContactName, ContactTitle, Address, Role, Email);
-              
+
             }
         } catch (SQLException e) {
         }
         return cus;
+    }
+
+    public void updateProfile(String cusID, String CompanyName, String ContactName, String ContactTitle, String Address) {
+        try {
+            String sql = "UPDATE [dbo].[Customers]\n"
+                    + "SET [CompanyName] = ?,\n"
+                    + "    [ContactName] = ?,\n"
+                    + "    [ContactTitle] = ?,\n"
+                    + "    [Address] = ?\n"
+                    + "WHERE CustomerID = ?;";
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, CompanyName);
+            ps.setString(2, ContactName);
+            ps.setString(3, ContactTitle);
+            ps.setString(4, Address);
+            ps.setString(5, cusID);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+        }
     }
 
     public static void main(String[] args) {

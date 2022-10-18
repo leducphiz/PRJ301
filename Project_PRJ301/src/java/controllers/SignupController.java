@@ -111,7 +111,7 @@ public class SignupController extends HttpServlet {
             req.getRequestDispatcher("../signup.jsp").forward(req, resp);
         } else {
             if (new AccountDAO().AddAccount(acc, cus) > 0) {
-                resp.sendRedirect(req.getContextPath() + "/signin.jsp");
+                resp.sendRedirect(req.getContextPath() + "/account/signin");
             } else {
 
                 req.getRequestDispatcher("../signup.jsp").forward(req, resp);
