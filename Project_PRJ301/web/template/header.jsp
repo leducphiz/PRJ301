@@ -21,8 +21,20 @@
                 <div id="logo">
                     <a href="<%=path%>/category-list"><img src="<%=path%>/img/logo.png" style="width: 100px; height: 100px;margin: 10px;"/></a>
                 </div>
+
                 <div id="banner"  >
                     <ul style="margin-bottom: 0">
+                        <li>
+                            <div class="input-group">
+                                <div class="form-outline">
+                                    <input type="search" id="form1" class="form-control" />
+                                    <label class="form-label" for="form1">Search</label>
+                                </div>
+                                <button type="button" class="btn btn-primary">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </li>
                         <li><a href="<%=path%>/cart.jsp" class="nav-link siennaa" >Cart: 100$</a></li>
                             <%
                                 if(session.getAttribute("AccSession")==null){
